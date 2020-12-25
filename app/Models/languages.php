@@ -12,7 +12,7 @@ class languages extends Model
     protected $table = 'languages';
 
     protected $fillable = [
-        'abbr', 'locale','name','direction','active','created_at','updated_at',
+        'abbr', 'locale','name','diraction','active','created_at','updated_at',
     ];
 
     public function scopeActive($query)
@@ -22,7 +22,7 @@ class languages extends Model
 
     public function  scopeSelection($query)
     {
-        return $query -> select('id','abbr', 'name', 'direction', 'active');
+        return $query -> select('id','abbr', 'name', 'diraction', 'active');
     }
 
 

@@ -44,7 +44,7 @@
                                 <div class="card-content collapse show">
                                     <div class="card-body card-dashboard">
                                         <table
-                                            class="table display nowrap table-striped table-bordered ">
+                                            class="table display nowrap table-striped table-bordered scroll-horizontal">
                                             <thead>
                                             <tr>
                                                 <th> الاسم</th>
@@ -70,6 +70,14 @@
                                                                    class="btn btn-outline-primary btn-min-width box-shadow-3 mr-1 mb-1">تعديل</a>
                                                                 <a href="languages/delete/{{$language->id}}"
                                                                    class="btn btn-outline-danger btn-min-width box-shadow-3 mr-1 mb-1">حذف</a>
+                                                                <a href="languages/status/{{$language->id}})}}"
+                                                                class="btn btn-outline-warning btn-min-width box-shadow-3 mr-1 mb-1">
+                                                                    @if($language->active == 0)
+                                                                        تفعيل
+                                                                        @else
+                                                                        الغاء تفعيل
+                                                                    @endif
+                                                                </a>
                                                             </div>
                                                         </td>
                                                     </tr>

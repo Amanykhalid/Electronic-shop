@@ -5,7 +5,7 @@ use App\Http\Controllers\Admin\LoginController;
 use App\Http\Controllers\Admin\LanguagesController;
 use App\Http\Controllers\Admin\MainCategory;
 use App\Http\Controllers\Admin\DashBoard;
-use App\Http\Controllers\Admin\vendors;
+use App\Http\Controllers\Admin\VendorsController;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -61,20 +61,20 @@ Route::group(['namespace'=>'Admin','middleware'=>'auth:admin'], function () {
 
     ##################### End MainCategory Routes ########################
 
-    ##################### Begin Vendors Routes ####################
+    ##################### Begin Vendors Routes ###########################
 
         Route::group(['prefix' => 'vendors'], function () {
-            Route::get('/',[vendors::class,'index'])->name('admin.vendors');
-            Route::get('create',[vendors::class,'createvendors'])->name('admin.vendors.create');
-            Route::post('store',[vendors::class,'storevendors'])->name('admin.vendors.store');
-            Route::get('edit/{id}',[vendors::class,'editvendors'])->name('admin.vendors.edit');
-            Route::post('update/{id}',[vendors::class,'updatevendors'])->name('admin.vendors.update');
-            Route::get('status/{id}',[vendors::class,'changeStatus'])->name('admin.vendors.status');
-            Route::get('delete/{id}',[vendors::class,'deletevendors'])->name('admin.vendors.delete');
+            Route::get('/',[VendorsController::class,'index'])->name('admin.vendors');
+            Route::get('create',[VendorsController::class,'createvendors'])->name('admin.vendors.create');
+            Route::post('store',[VendorsController::class,'storevendors'])->name('admin.vendors.store');
+            Route::get('edit/{id}',[VendorsController::class,'editvendors'])->name('admin.vendors.edit');
+            Route::post('update/{id}',[VendorsController::class,'updatevendors'])->name('admin.vendors.update');
+            Route::get('status/{id}',[VendorsController::class,'changeStatus'])->name('admin.vendors.status');
+            Route::get('delete/{id}',[VendorsController::class,'deletevendors'])->name('admin.vendors.delete');
     
         });
     
-    ##################### End Vendors Routes ########################
+    ##################### End Vendors Routes #############################
 
 
 });

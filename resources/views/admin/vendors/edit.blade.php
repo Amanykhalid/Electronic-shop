@@ -160,7 +160,7 @@
                                                             <input type="text" id="pac-input"
                                                                    class="form-control"
                                                                    placeholder="  " name="address"
-                                                                   value="{{$vendor -> address}}"
+                                                                   value="{{$vendor ->address}}"
                                                             >
 
                                                             @error("address")

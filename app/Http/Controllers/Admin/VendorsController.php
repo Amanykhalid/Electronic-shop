@@ -32,44 +32,44 @@ class VendorsController extends Controller
     }
 
     // Store New Vendor 
-   public function storevendors(VendorRequest $request)
-   {
-    try {
+    public function storevendors(VendorRequest $request)
+    {
+        try {
 
-        if (!$request->has('active'))
-            $request->request->add(['active' => 0]);
-        else
-            $request->request->add(['active' => 1]);
+            if (!$request->has('active'))
+                $request->request->add(['active' => 0]);
+            else
+                $request->request->add(['active' => 1]);
 
-        $filePath = "";
-        if ($request->has('logo')) {
-            $filePath = uploadImage('vendors', $request->logo);
+            $filePath = "";
+            if ($request->has('logo')) {
+                $filePath = uploadImage('vendors', $request->logo);
+            }
+
+            $vendor = Vendors::create([
+                'name' => $request->name,
+                'mobile' => $request->mobile,
+                'email' => $request->email,
+                'active' => $request->active,
+                'address' => $request->address,
+                'logo' => $filePath,
+                'password' => $request->password,
+                'category_id' => $request->category_id,
+                'latitude' => $request->latitude,
+                'longitude' => $request->longitude,
+            ]);
+
+            Notification::send($vendor, new VendorCreated($vendor));
+
+            return redirect()->route('admin.vendors')->with(['success' => 'تم الحفظ بنجاح']);
+
+        } catch (\Exception $ex) {
+            return $ex;
+            return redirect()->route('admin.vendors')->with(['error' => 'حدث خطا ما برجاء المحاوله لاحقا']);
+
         }
 
-        $vendor = Vendors::create([
-            'name' => $request->name,
-            'mobile' => $request->mobile,
-            'email' => $request->email,
-            'active' => $request->active,
-            'address' => $request->address,
-            'logo' => $filePath,
-            'password' => $request->password,
-            'category_id' => $request->category_id,
-            'latitude' => $request->latitude,
-            'longitude' => $request->longitude,
-        ]);
-
-        Notification::send($vendor, new VendorCreated($vendor));
-
-        return redirect()->route('admin.vendors')->with(['success' => 'تم الحفظ بنجاح']);
-
-    } catch (\Exception $ex) {
-        return $ex;
-        return redirect()->route('admin.vendors')->with(['error' => 'حدث خطا ما برجاء المحاوله لاحقا']);
-
     }
-
-   }
 
     //Show Edit Vendor Page 
     public function editvendors($vendorId)
@@ -78,7 +78,6 @@ class VendorsController extends Controller
         {
             $vendor=Vendors::selection()->find($vendorId);
             $categories = main_categories::where('translation_of', 0)->active()->get();
-
             if(!$vendor)
             {
                 return redirect()->route('admin.vendors')->with(['error' => 'هذا المتجر غير موجود']);

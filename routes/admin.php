@@ -33,7 +33,7 @@ Route::group(['namespace'=>'Admin','middleware'=>'auth:admin'], function () {
     
     ##################### Begin Languages Routes #######################
 
-    Route::group(['prefix' => 'languages'], function () {
+    Route::group(['prefix' => 'Languages'], function () {
         Route::get('/',[LanguagesController::class,'index'])->name('admin.Languages');
         Route::get('create',[LanguagesController::class,'createLanguages'])->name('admin.Languages.create');
         Route::post('store',[LanguagesController::class,'storeLanguages'])->name('admin.Languages.store');

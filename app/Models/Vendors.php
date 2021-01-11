@@ -12,7 +12,7 @@ class Vendors extends Model
     protected $table = 'vendors';
 
     protected $fillable = [
-        'name', 'mobile', 'password', 'address', 'email', 'logo', 'category_id', 'active', 'created_at', 'updated_at'
+        'name', 'mobile', 'password', 'address', 'email', 'logo','latitude','longitude', 'category_id', 'active', 'created_at', 'updated_at'
     ];
 
     protected $hidden = ['category_id', 'password'];
@@ -33,7 +33,7 @@ class Vendors extends Model
 
     public function scopeSelection($query)
     {
-        return $query->select('id', 'category_id', 'active', 'name', 'address', 'email', 'logo', 'mobile');
+        return $query->select('id', 'category_id', 'active', 'name', 'address', 'email','latitude','longitude', 'logo', 'mobile');
     }
 
 
